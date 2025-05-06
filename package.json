@@ -25,6 +25,7 @@
     "urql": "^4.2.2"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@graphql-codegen/cli": "^5.0.5",
     "@graphql-codegen/typescript": "^4.1.6",
     "@graphql-codegen/typescript-operations": "^4.6.0",
@@ -38,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "autoprefixer": "^10.4.19",
+    "biome": "^0.3.3",
     "concurrently": "^9.1.2",
     "esbuild": "^0.25.4",
     "esbuild-register": "^3.6.0",
