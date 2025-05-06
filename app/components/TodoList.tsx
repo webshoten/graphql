@@ -62,7 +62,6 @@ export default function TodoList() {
   const [, toggleTodo] = useMutation<ToggleTodoData, { id: string }>(TOGGLE_TODO_MUTATION);
 
   const handleAddTodo = async (e: React.FormEvent) => {
-    debugger
     e.preventDefault();
     if (!newTodoText.trim()) return;
     
