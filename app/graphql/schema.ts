@@ -5,7 +5,6 @@ interface Todo {
   id: string;
   text: string;
   completed: boolean;
-  test: string;
 }
 
 const builder = new SchemaBuilder<{
@@ -20,14 +19,13 @@ builder.objectType('Todo', {
     id: t.exposeString('id'),
     text: t.exposeString('text'),
     completed: t.exposeBoolean('completed'),
-    test: t.exposeString('test'),
   }),
 });
 
 // ダミーデータ
 const todos: Todo[] = [
-  { id: '1', text: 'GraphQLを学ぶ', completed: false,test:"" },
-  { id: '2', text: 'Todoアプリを作成', completed: false ,test:""},
+  { id: '1', text: 'GraphQLを学ぶ', completed: false},
+  { id: '2', text: 'Todoアプリを作成', completed: false},
 ];
 
 builder.queryType({
@@ -61,7 +59,6 @@ builder.mutationType({
           id: String(todos.length + 1),
           text: args.text,
           completed: false,
-          test:""
         };
         todos.push(newTodo);
         return newTodo;

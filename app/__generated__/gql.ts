@@ -48,7 +48,6 @@ export type Todo = {
   __typename?: 'Todo';
   completed?: Maybe<Scalars['Boolean']['output']>;
   id?: Maybe<Scalars['String']['output']>;
-  test?: Maybe<Scalars['String']['output']>;
   text?: Maybe<Scalars['String']['output']>;
 };
 
