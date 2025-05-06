@@ -1,65 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { gql, useQuery, useMutation } from 'urql';
-
-// クライアント側でTodoの型を使用するために必要なクエリを作成
-const TODOS_QUERY = gql`
-  query Todos {
-    todos {
-      id
-      text
-      completed
-    }
-  }
-`;
-
-const ADD_TODO_MUTATION = gql`
-  mutation AddTodo($text: String!) {
-    addTodo(text: $text) {
-      id
-      text
-      completed
-    }
-  }
-`;
-
-const TOGGLE_TODO_MUTATION = gql`
-  mutation ToggleTodo($id: String!) {
-    toggleTodo(id: $id) {
-      id
-      text
-      completed
-    }
-  }
-`;
-
-// 型の定義
-interface Todo {
-  id: string;
-  text: string;
-  completed: boolean;
-}
-
-interface TodosData {
-  todos: Todo[];
-}
-
-interface AddTodoData {
-  addTodo: Todo;
-}
-
-interface ToggleTodoData {
-  toggleTodo: Todo | null;
-}
+import { 
+  useTodosQuery, 
+  useAddTodoMutation, 
+  useToggleTodoMutation
+} from '../__generated__/gql';
 
 export default function TodoList() {
   const [newTodoText, setNewTodoText] = useState('');
   
-  // 型安全なクエリとミューテーションを使用
-  const [todosResult] = useQuery<TodosData>({ query: TODOS_QUERY });
-  const [, addTodo] = useMutation<AddTodoData, { text: string }>(ADD_TODO_MUTATION);
-  const [, toggleTodo] = useMutation<ToggleTodoData, { id: string }>(TOGGLE_TODO_MUTATION);
+  // 生成されたフックを使用
+  const [todosResult] = useTodosQuery();
+  const [, addTodo] = useAddTodoMutation();
+  const [, toggleTodo] = useToggleTodoMutation();
 
   const handleAddTodo = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,15 +51,15 @@ export default function TodoList() {
       </form>
 
       <ul className="space-y-2">
-        {todosResult.data?.todos.map((todo) => (
+        {todosResult.data?.todos?.map((todo) => (
           <li 
-            key={todo.id} 
+            key={todo.id!} 
             className="flex items-center p-2 border rounded"
           >
             <input
               type="checkbox"
-              checked={todo.completed}
-              onChange={() => handleToggleTodo(todo.id)}
+              checked={todo.completed || false}
+              onChange={() => handleToggleTodo(todo.id!)}
               className="mr-2 h-5 w-5"
             />
             <span className={todo.completed ? 'line-through text-gray-500' : ''}>

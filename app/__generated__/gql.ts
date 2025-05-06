@@ -83,7 +83,7 @@ export const TodosDocument = gql`
 
 export function useTodosQuery(options?: Omit<Urql.UseQueryArgs<TodosQueryVariables>, 'query'>) {
   return Urql.useQuery<TodosQuery, TodosQueryVariables>({ query: TodosDocument, ...options });
-};
+}
 export const AddTodoDocument = gql`
     mutation AddTodo($text: String!) {
   addTodo(text: $text) {
@@ -96,7 +96,7 @@ export const AddTodoDocument = gql`
 
 export function useAddTodoMutation() {
   return Urql.useMutation<AddTodoMutation, AddTodoMutationVariables>(AddTodoDocument);
-};
+}
 export const ToggleTodoDocument = gql`
     mutation ToggleTodo($id: String!) {
   toggleTodo(id: $id) {
@@ -109,4 +109,4 @@ export const ToggleTodoDocument = gql`
 
 export function useToggleTodoMutation() {
   return Urql.useMutation<ToggleTodoMutation, ToggleTodoMutationVariables>(ToggleTodoDocument);
-};
+}
