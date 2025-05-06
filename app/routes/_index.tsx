@@ -1,12 +1,12 @@
 // app/routes/_index.tsx
-'use client';
+"use client";
 
-import TodoList from '../components/TodoList';
+import TodoList from "../components/TodoList";
 
 export default function Index() {
-  return (
-    <div className="container mx-auto p-4">
-      <TodoList />
-    </div>
-  );
+	return (
+		<div className="container mx-auto p-4">
+			<TodoList />
+		</div>
+	);
 }
