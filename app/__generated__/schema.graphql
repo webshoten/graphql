@@ -1,0 +1,27 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Folder {
+  createdAt: Float
+  id: String
+  name: String
+}
+
+type Mutation {
+  addTodo(text: String!): Todo
+  toggleTodo(id: String!): Todo
+}
+
+type Query {
+  folders: [Folder!]
+  todo(id: String!): Todo
+  todos: [Todo!]
+}
+
+type Todo {
+  completed: Boolean
+  id: String
+  text: String
+}

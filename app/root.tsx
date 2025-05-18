@@ -8,6 +8,7 @@ import {
 } from "@remix-run/react";
 
 import "./tailwind.css";
+import { Navbar } from "./components/layout/navbar";
 import UrqlProvider from "./urql-provider";
 
 export const links: LinksFunction = () => [
@@ -44,7 +45,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
 	return (
 		<UrqlProvider>
-			<Outlet />
+			<main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
+				<Outlet />
+				<Navbar />
+			</main>
 		</UrqlProvider>
 	);
 }

@@ -1,19 +1,13 @@
-import type { CodegenConfig } from '@graphql-codegen/cli';
-import { printSchema } from 'graphql';
-import { schema } from './app/graphql/schema';
+import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: printSchema(schema),
-  documents: './app/**/*.{ts,tsx}',
-  generates: {
-    './app/__generated__/gql.ts': {
-      plugins: [
-        'typescript',
-        'typescript-operations',
-        'typescript-urql',
-      ],
-    },
-  },
+	schema: "./app/__generated__/schema.graphql",
+	generates: {
+		"./app/__generated__/types.ts": {
+			plugins: ["typescript"],
+		},
+	},
+	watch: false,
 };
 
 export default config;
