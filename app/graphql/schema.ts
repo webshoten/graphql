@@ -69,6 +69,24 @@ builder.queryType({
 
 builder.mutationType({
 	fields: (t) => ({
+		addFolder: t.field({
+			type: "Folder",
+			args: {
+				id: t.arg.string({ required: true }),
+				name: t.arg.string({ required: true }),
+				createdAt: t.arg.int({ required: true }),
+			},
+			resolve: (_, args) => {
+				const newFolder = {
+					id: args.id,
+					name: args.name,
+					createdAt: args.createdAt,
+				};
+				folders.push(newFolder);
+				return newFolder;
+			},
+		}),
+
 		addTodo: t.field({
 			type: "Todo",
 			args: {

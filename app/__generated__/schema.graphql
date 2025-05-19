@@ -10,6 +10,7 @@ type Folder {
 }
 
 type Mutation {
+  addFolder(createdAt: Int!, id: String!, name: String!): Folder
   addTodo(text: String!): Todo
   toggleTodo(id: String!): Todo
 }
